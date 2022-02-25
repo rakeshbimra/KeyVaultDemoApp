@@ -61,7 +61,7 @@ namespace KeyVaultDemoApp
             AuthenticationResult result = await authContext.AcquireTokenAsync(resource, clientCredential);
 
             if (result == null)
-                throw new InvalidOperationException("Failed to obtain the JWT token");
+                throw new ArgumentNullException("Failed to obtain the JWT token");
 
             return result.AccessToken;
         }
@@ -87,7 +87,7 @@ namespace KeyVaultDemoApp
             var result = await authenticationContext.AcquireTokenAsync(resource, clientAssertionCertificate);
 
             if (result == null)
-                throw new InvalidOperationException($"Failed to obtain the JWT token");
+                throw new ArgumentNullException($"Failed to obtain the JWT token");
 
             return result.AccessToken;
         }
@@ -102,7 +102,7 @@ namespace KeyVaultDemoApp
                 .FirstOrDefault(x => x.Thumbprint == thumbprint);
 
             if (cert == null)
-                throw new InvalidOperationException($"Failed to find the certificate for thumbprint:{thumbprint}");
+                throw new ArgumentNullException($"Failed to find the certificate for thumbprint:{thumbprint}");
 
             return cert;
         }
